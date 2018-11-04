@@ -13,44 +13,21 @@ functionality is unnecessary.
 This `bc` is Free and Open Source Software (FOSS). It is offered under the BSD
 0-clause License. Full license text may be found in the `LICENSE.md` file.
 
+This version of `bc` builds upon the [original version](https://github.com/gavinhoward/bc). Changes are minimal, just to make it run with [ios_system](https://github.com/holzschu/ios_system), and thus inside terminals on iOS. 
+
 ## Build
 
-To build, use the following commands:
-
+To build for iOS, type the following command: 
 ```
-make [bc|dc]
-make install
+sh ./get_frameworks.sh
 ```
+This will download the latest version of the `ios_system` framework and the associated header file, `ios_error.h`.
 
-**Note**: The targets `all`, `bc`, and `dc` are exclusionary; only one can be
-used at a time.
+Then open `bc_ios.xcodeproj` and hit Build. This will create the `bc_ios.framework`, which you can then link with your iOS applications. 
 
-This `bc` supports `CC`, `CFLAGS`, `CPPFLAGS`, `LDFLAGS`, `LDLIBS`, `PREFIX`,
-and `DESTDIR` `make` variables. Note that to cross-compile this `bc`, an
-appropriate compiler must be present in order to bootstrap core file(s), if the
-architectures are not compatible (i.e., unlike i686 on x86_64). The approach is:
+The XCode project starts by calling `make`, to generate the auxiliary source files (in the `gen/` subdirectory). This will raise warnings that you are compiling using a MacOS SDK for an iOS platform. These can safely be ignored. 
 
-```
-HOSTCC="/path/to/native/compiler" make [bc|dc]
-make install
-```
-
-It is expected that `CC` produces code for the target system.
-
-Users can also create a file named `config.mak` in the top-level directory to
-control `make`. This is not normally necessary.
-
-Users can also disable signal handling by compiling as follows:
-
-```
-BC_ENABLE_SIGNALS=0 make
-```
-
-Signal handling is on by default.
-
-Executing `make help` lists all `make` targets and options.
-
-### Optimization
+### Optimization 
 
 I ***highly*** encourage package and distro maintainers to compile as follows:
 
