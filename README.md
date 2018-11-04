@@ -17,15 +17,14 @@ This version of `bc` builds upon the [original version](https://github.com/gavin
 
 ## Build
 
-To build for iOS, type the following command: 
+To build for iOS, type the following commands: 
 ```
 sh ./get_frameworks.sh
+make
 ```
-This will download the latest version of the `ios_system` framework and the associated header file, `ios_error.h`.
+The first will download the latest version of the `ios_system` framework and the associated header file, `ios_error.h`. The second will create the auxiliary source files  (in the `gen/` subdirectory)
 
 Then open `bc_ios.xcodeproj` and hit Build. This will create the `bc_ios.framework`, which you can then link with your iOS applications. 
-
-The XCode project starts by calling `make`, to generate the auxiliary source files (in the `gen/` subdirectory). This will raise warnings that you are compiling using a MacOS SDK for an iOS platform. These can safely be ignored. 
 
 ### Optimization 
 
