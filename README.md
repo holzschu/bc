@@ -24,7 +24,7 @@ make
 ```
 The first will download the latest version of the `ios_system` framework and the associated header file, `ios_error.h`. The second will create the auxiliary source files  (in the `gen/` subdirectory)
 
-Then open `bc_ios.xcodeproj` and hit Build. This will create the `bc_ios.framework`, which you can then link with your iOS applications. 
+Then open `bc_ios/bc_ios.xcodeproj` and hit Build. This will create the `bc_ios.framework`, which you can then link with your iOS applications. 
 
 ### Optimization 
 

@@ -175,7 +175,6 @@
 			buildConfigurationList = 228ED8C0218F23FD0066CC1E /* Build configuration list for PBXNativeTarget "bc_ios" */;
 			buildPhases = (
 				228ED8B3218F23FD0066CC1E /* Headers */,
-				228ED8EA218F2B140066CC1E /* ShellScript */,
 				228ED8B4218F23FD0066CC1E /* Sources */,
 				228ED8B5218F23FD0066CC1E /* Frameworks */,
 				228ED8B6218F23FD0066CC1E /* Resources */,
@@ -230,26 +229,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		228ED8EA218F2B140066CC1E /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\ncd ..\nmake\n";
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		228ED8B4218F23FD0066CC1E /* Sources */ = {
@@ -426,7 +405,7 @@
 					"-D_POSIX_C_SOURCE=200809L",
 					"-DVERSION=1.1",
 					"-DBC_NUM_KARATSUBA_LEN=32",
-					"-DBC_ENABLE_SIGNALS=1",
+					"-DBC_ENABLE_SIGNALS=0",
 					"-DDC_ENABLED",
 					"-DBC_ENABLED",
 					"-O3",
@@ -475,7 +454,7 @@
 					"-D_POSIX_C_SOURCE=200809L",
 					"-DVERSION=1.1",
 					"-DBC_NUM_KARATSUBA_LEN=32",
-					"-DBC_ENABLE_SIGNALS=1",
+					"-DBC_ENABLE_SIGNALS=0",
 					"-DDC_ENABLED",
 					"-DBC_ENABLED",
 					"-O3",
