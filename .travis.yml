@@ -3,6 +3,7 @@ language: objective-c
 
 before_install: 
 - ./get_frameworks.sh
+- make
 
 script:
 - xcodebuild -project bc_ios/bc_ios.xcodeproj -alltargets -sdk iphoneos -configuration Debug -quiet
