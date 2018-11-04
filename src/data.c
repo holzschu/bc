@@ -24,6 +24,10 @@
 #include <parse.h>
 #include <bc.h>
 #include <num.h>
+#include <TargetConditionals.h>
+#ifdef TARGET_OS_IPHONE
+#include "ios_error.h"
+#endif
 
 // clang-format off
 

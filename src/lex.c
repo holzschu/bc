@@ -28,6 +28,10 @@
 #include <status.h>
 #include <lex.h>
 #include <vm.h>
+#include <TargetConditionals.h>
+#ifdef TARGET_OS_IPHONE
+#include "ios_error.h"
+#endif
 
 void bc_lex_lineComment(BcLex *l) {
 	l->t.t = BC_LEX_WHITESPACE;

@@ -33,6 +33,10 @@
 #include <parse.h>
 #include <program.h>
 #include <vm.h>
+#include <TargetConditionals.h>
+#ifdef TARGET_OS_IPHONE
+#include "ios_error.h"
+#endif
 
 void bc_parse_addFunc(BcParse *p, char *name, size_t *idx) {
 	bc_program_addFunc(p->prog, name, idx);

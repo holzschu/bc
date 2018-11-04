@@ -30,6 +30,10 @@
 #include <status.h>
 #include <num.h>
 #include <vm.h>
+#include <TargetConditionals.h>
+#ifdef TARGET_OS_IPHONE
+#include "ios_error.h"
+#endif
 
 void bc_num_setToZero(BcNum *n, size_t scale) {
 	assert(n);

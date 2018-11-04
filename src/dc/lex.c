@@ -26,6 +26,10 @@
 #include <lex.h>
 #include <dc.h>
 #include <vm.h>
+#include <TargetConditionals.h>
+#ifdef TARGET_OS_IPHONE
+#include "ios_error.h"
+#endif
 
 #ifdef DC_ENABLED
 BcStatus dc_lex_register(BcLex *l) {

@@ -30,10 +30,17 @@
 #include <vm.h>
 #include <bc.h>
 #include <dc.h>
-
+#include <TargetConditionals.h>
+#ifdef TARGET_OS_IPHONE
+#include "ios_error.h"
+#endif
 BcGlobals bcg;
 
-int main(int argc, char *argv[]) {
+#ifdef TARGET_OS_IPHONE
+int bcdc_main(int argc, char *argv[]) {
+#else
+    int main(int argc, char *argv[]) {
+#endif
 
 	BcStatus s;
 	char *name;

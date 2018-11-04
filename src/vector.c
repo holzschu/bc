@@ -28,6 +28,10 @@
 #include <vector.h>
 #include <lang.h>
 #include <vm.h>
+#include <TargetConditionals.h>
+#ifdef TARGET_OS_IPHONE
+#include "ios_error.h"
+#endif
 
 void bc_vec_grow(BcVec *v, size_t n) {
 	size_t cap = v->cap * 2;

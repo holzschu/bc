@@ -26,6 +26,10 @@
 
 #include <lang.h>
 #include <vm.h>
+#include <TargetConditionals.h>
+#ifdef TARGET_OS_IPHONE
+#include "ios_error.h"
+#endif
 
 int bc_id_cmp(const void *e1, const void *e2) {
 	return strcmp(((const BcId*) e1)->name, ((const BcId*) e2)->name);

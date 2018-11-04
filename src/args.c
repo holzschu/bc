@@ -33,6 +33,10 @@
 #include <read.h>
 #include <vm.h>
 #include <args.h>
+#include <TargetConditionals.h>
+#ifdef TARGET_OS_IPHONE
+#include "ios_error.h"
+#endif
 
 static const struct option bc_args_lopt[] = {
 

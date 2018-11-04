@@ -29,6 +29,10 @@
 #include <parse.h>
 #include <bc.h>
 #include <vm.h>
+#include <TargetConditionals.h>
+#ifdef TARGET_OS_IPHONE
+#include "ios_error.h"
+#endif
 
 #ifdef BC_ENABLED
 BcStatus bc_parse_else(BcParse *p);

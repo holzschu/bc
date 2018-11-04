@@ -46,6 +46,17 @@
 #include <args.h>
 #include <vm.h>
 #include <read.h>
+#include <TargetConditionals.h>
+#ifdef TARGET_OS_IPHONE
+#include "ios_error.h"
+#define isatty ios_isatty
+#undef stdin
+#define stdin thread_stdin
+#undef stdout
+#define stdout thread_stdout
+#undef stderr
+#define stderr thread_stderr
+#endif
 
 #if BC_ENABLE_SIGNALS
 #ifndef _WIN32
@@ -74,6 +85,7 @@ void bc_vm_info(const char* const help) {
 	bc_vm_printf(stdout, "%s %s\n", bcg.name, BC_VERSION);
 	bc_vm_puts(bc_copyright, stdout);
 	if (help) bc_vm_printf(stdout, help, bcg.name);
+    fflush(stdout);
 }
 
 BcStatus bc_vm_error(BcStatus s, const char *file, size_t line) {

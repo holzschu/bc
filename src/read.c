@@ -33,6 +33,16 @@
 #include <read.h>
 #include <program.h>
 #include <vm.h>
+#include <TargetConditionals.h>
+#ifdef TARGET_OS_IPHONE
+#include "ios_error.h"
+#undef stdin
+#define stdin thread_stdin
+#undef stdout
+#define stdout thread_stdout
+#undef stderr
+#define stderr thread_stderr
+#endif
 
 BcStatus bc_read_line(BcVec *vec, const char* prompt) {
 
@@ -40,6 +50,9 @@ BcStatus bc_read_line(BcVec *vec, const char* prompt) {
 	signed char c = 0;
 
 	if (bcg.ttyin && !bcg.posix) {
+#ifdef TARGET_OS_IPHONE
+        bc_vm_fflush(stdout);
+#endif
 		bc_vm_puts(prompt, stderr);
 		bc_vm_fflush(stderr);
 	}

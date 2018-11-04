@@ -13,6 +13,10 @@
 # PERFORMANCE OF THIS SOFTWARE.
 #
 
+CC = clang
+# First step: build for MacOS, to generate the auxiliary program files (in gen)
+CFLAGS = -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/ -Wincompatible-sysroot -I . 
+
 SRC = $(sort $(wildcard src/*.c))
 OBJ = $(SRC:.c=.o)
 GCDA = $(SRC:.c=.gcda)
@@ -79,8 +83,8 @@ HOSTCC ?= $(CC)
 
 all: CPPFLAGS += -D$(DC_ENABLED) -D$(BC_ENABLED)
 all: make_bin clean_exe $(DC_HELP_O) $(BC_HELP_O) $(BC_LIB_O) $(BC_OBJ) $(DC_OBJ) $(OBJ)
-	$(CC) $(CFLAGS) $(OBJ) $(DC_OBJ) $(BC_OBJ) $(BC_LIB_O) $(BC_HELP_O) $(DC_HELP_O) -o $(BC_EXEC)
-	$(LINK) $(BIN) $(DC)
+#	$(CC) $(CFLAGS) $(OBJ) $(DC_OBJ) $(BC_OBJ) $(BC_LIB_O) $(BC_HELP_O) $(DC_HELP_O) -o $(BC_EXEC)
+#	$(LINK) $(BIN) $(DC)
 
 $(GEN_EXEC):
 	$(HOSTCC) $(CFLAGS) -o $(GEN_EXEC) $(GEN_C)
