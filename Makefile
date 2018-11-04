@@ -15,7 +15,7 @@
 
 CC = clang
 # First step: build for MacOS, to generate the auxiliary program files (in gen)
-CFLAGS = -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/ -Wincompatible-sysroot -I . 
+CFLAGS = -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/  -I . 
 
 SRC = $(sort $(wildcard src/*.c))
 OBJ = $(SRC:.c=.o)
