@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 48;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		222691F024B50AB0001A0D2F /* ios_system.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 222691EF24B50A9F001A0D2F /* ios_system.xcframework */; };
 		228ED8BD218F23FD0066CC1E /* bc_ios.h in Headers */ = {isa = PBXBuildFile; fileRef = 228ED8BB218F23FD0066CC1E /* bc_ios.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		228ED8C8218F24FC0066CC1E /* bc.c in Sources */ = {isa = PBXBuildFile; fileRef = 228ED8C5218F24FC0066CC1E /* bc.c */; };
 		228ED8C9218F24FC0066CC1E /* parse.c in Sources */ = {isa = PBXBuildFile; fileRef = 228ED8C6218F24FC0066CC1E /* parse.c */; };
@@ -28,10 +29,10 @@
 		228ED8ED218F2C270066CC1E /* bc_help.c in Sources */ = {isa = PBXBuildFile; fileRef = 228ED8EC218F2C270066CC1E /* bc_help.c */; };
 		228ED8EF218F2C2D0066CC1E /* dc_help.c in Sources */ = {isa = PBXBuildFile; fileRef = 228ED8EE218F2C2D0066CC1E /* dc_help.c */; };
 		228ED8F1218F2C320066CC1E /* lib.c in Sources */ = {isa = PBXBuildFile; fileRef = 228ED8F0218F2C320066CC1E /* lib.c */; };
-		228ED8F9218F32650066CC1E /* ios_system.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 228ED8F8218F32650066CC1E /* ios_system.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		222691EF24B50A9F001A0D2F /* ios_system.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = ios_system.xcframework; path = "../../../../Library/Developer/Xcode/DerivedData/bc_ios-fezbmqsfnktzzfgrkwehmhlxxams/SourcePackages/artifacts/ios_system/ios_system.xcframework"; sourceTree = "<group>"; };
 		228ED8B8218F23FD0066CC1E /* bc_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = bc_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		228ED8BB218F23FD0066CC1E /* bc_ios.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = bc_ios.h; sourceTree = "<group>"; };
 		228ED8BC218F23FD0066CC1E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -55,7 +56,6 @@
 		228ED8EC218F2C270066CC1E /* bc_help.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = bc_help.c; path = ../gen/bc_help.c; sourceTree = "<group>"; };
 		228ED8EE218F2C2D0066CC1E /* dc_help.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = dc_help.c; path = ../gen/dc_help.c; sourceTree = "<group>"; };
 		228ED8F0218F2C320066CC1E /* lib.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = lib.c; path = ../gen/lib.c; sourceTree = "<group>"; };
-		228ED8F8218F32650066CC1E /* ios_system.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ios_system.framework; path = ../Frameworks/ios_system.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,7 +63,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				228ED8F9218F32650066CC1E /* ios_system.framework in Frameworks */,
+				222691F024B50AB0001A0D2F /* ios_system.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -151,7 +151,7 @@
 		228ED8F7218F32650066CC1E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				228ED8F8218F32650066CC1E /* ios_system.framework */,
+				222691EF24B50A9F001A0D2F /* ios_system.xcframework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -184,6 +184,8 @@
 			dependencies = (
 			);
 			name = bc_ios;
+			packageProductDependencies = (
+			);
 			productName = bc_ios;
 			productReference = 228ED8B8218F23FD0066CC1E /* bc_ios.framework */;
 			productType = "com.apple.product-type.framework";
@@ -211,6 +213,9 @@
 				en,
 			);
 			mainGroup = 228ED8AE218F23FD0066CC1E;
+			packageReferences = (
+				222691EC24B50A94001A0D2F /* XCRemoteSwiftPackageReference "ios_system" */,
+			);
 			productRefGroup = 228ED8B9218F23FD0066CC1E /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -393,7 +398,11 @@
 				INFOPLIST_FILE = bc_ios/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				OTHER_CFLAGS = (
 					"-Wall",
 					"-Wextra",
@@ -417,10 +426,7 @@
 					"-DNEBUG",
 					"-O3",
 				);
-				OTHER_LDFLAGS = (
-					"-F",
-					../Frameworks/,
-				);
+				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = "Nicolas-Holzschuch.bc-ios";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
@@ -442,7 +448,11 @@
 				INFOPLIST_FILE = bc_ios/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				OTHER_CFLAGS = (
 					"-Wall",
 					"-Wextra",
@@ -466,10 +476,7 @@
 					"-DNEBUG",
 					"-O3",
 				);
-				OTHER_LDFLAGS = (
-					"-F",
-					../Frameworks/,
-				);
+				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = "Nicolas-Holzschuch.bc-ios";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
@@ -499,6 +506,17 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		222691EC24B50A94001A0D2F /* XCRemoteSwiftPackageReference "ios_system" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/holzschu/ios_system.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
 	};
 	rootObject = 228ED8AF218F23FD0066CC1E /* Project object */;
 }
