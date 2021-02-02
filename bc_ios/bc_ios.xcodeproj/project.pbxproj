@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		222691F024B50AB0001A0D2F /* ios_system.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 222691EF24B50A9F001A0D2F /* ios_system.xcframework */; };
+		228E141325C968740065D825 /* ios_system.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 228E141225C968740065D825 /* ios_system.xcframework */; };
 		228ED8BD218F23FD0066CC1E /* bc_ios.h in Headers */ = {isa = PBXBuildFile; fileRef = 228ED8BB218F23FD0066CC1E /* bc_ios.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		228ED8C8218F24FC0066CC1E /* bc.c in Sources */ = {isa = PBXBuildFile; fileRef = 228ED8C5218F24FC0066CC1E /* bc.c */; };
 		228ED8C9218F24FC0066CC1E /* parse.c in Sources */ = {isa = PBXBuildFile; fileRef = 228ED8C6218F24FC0066CC1E /* parse.c */; };
@@ -32,7 +32,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		222691EF24B50A9F001A0D2F /* ios_system.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = ios_system.xcframework; path = "../../../../Library/Developer/Xcode/DerivedData/bc_ios-fezbmqsfnktzzfgrkwehmhlxxams/SourcePackages/artifacts/ios_system/ios_system.xcframework"; sourceTree = "<group>"; };
+		228E141225C968740065D825 /* ios_system.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = ios_system.xcframework; path = ../xcfs/.build/artifacts/xcfs/ios_system.xcframework; sourceTree = "<group>"; };
 		228ED8B8218F23FD0066CC1E /* bc_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = bc_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		228ED8BB218F23FD0066CC1E /* bc_ios.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = bc_ios.h; sourceTree = "<group>"; };
 		228ED8BC218F23FD0066CC1E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -63,7 +63,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				222691F024B50AB0001A0D2F /* ios_system.xcframework in Frameworks */,
+				228E141325C968740065D825 /* ios_system.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -151,7 +151,7 @@
 		228ED8F7218F32650066CC1E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				222691EF24B50A9F001A0D2F /* ios_system.xcframework */,
+				228E141225C968740065D825 /* ios_system.xcframework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -214,7 +214,6 @@
 			);
 			mainGroup = 228ED8AE218F23FD0066CC1E;
 			packageReferences = (
-				222691EC24B50A94001A0D2F /* XCRemoteSwiftPackageReference "ios_system" */,
 			);
 			productRefGroup = 228ED8B9218F23FD0066CC1E /* Products */;
 			projectDirPath = "";
@@ -387,6 +386,7 @@
 		228ED8C1218F23FD0066CC1E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = arm64;
 				CLANG_ENABLE_MODULES = NO;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
@@ -437,6 +437,7 @@
 		228ED8C2218F23FD0066CC1E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = arm64;
 				CLANG_ENABLE_MODULES = NO;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
@@ -506,17 +507,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		222691EC24B50A94001A0D2F /* XCRemoteSwiftPackageReference "ios_system" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/holzschu/ios_system.git";
-			requirement = {
-				branch = master;
-				kind = branch;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
 	};
 	rootObject = 228ED8AF218F23FD0066CC1E /* Project object */;
 }
