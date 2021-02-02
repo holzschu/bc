@@ -16,7 +16,7 @@ jobs:
     - name: xcode-select
       run: sudo xcode-select -s /Applications/Xcode_12.3.app
 
-    - name: build-network_ios
+    - name: build-bc_ios
       run: swift run --package-path xcfs build
 
     - name: Create Release
@@ -31,8 +31,8 @@ jobs:
         draft: false
         prerelease: false
 
-    - name: Upload network_ios
-      id: upload-network_ios
+    - name: Upload bc_ios
+      id: upload-bc_ios
       uses: actions/upload-release-asset@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
