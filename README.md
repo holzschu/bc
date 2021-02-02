@@ -1,5 +1,7 @@
 # `bc`
 
+![CI](https://github.com/holzschu/bc/workflows/CI/badge.svg)
+
 This is an implementation of POSIX `bc` that implements
 [GNU `bc`](https://www.gnu.org/software/bc/) extensions, as well as the period
 (`.`) extension for the BSD flavor of `bc`.
