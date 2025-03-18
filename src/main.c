@@ -1,18 +1,31 @@
 /*
  * *****************************************************************************
  *
- * Copyright 2018 Gavin D. Howard
+ * SPDX-License-Identifier: BSD-2-Clause
  *
- * Permission to use, copy, modify, and/or distribute this software for any
- * purpose with or without fee is hereby granted.
+ * Copyright (c) 2018-2024 Gavin D. Howard and contributors.
  *
- * THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
- * REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY
- * AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
- * INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
- * LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
- * OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
- * PERFORMANCE OF THIS SOFTWARE.
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are met:
+ *
+ * * Redistributions of source code must retain the above copyright notice, this
+ *   list of conditions and the following disclaimer.
+ *
+ * * Redistributions in binary form must reproduce the above copyright notice,
+ *   this list of conditions and the following disclaimer in the documentation
+ *   and/or other materials provided with the distribution.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+ * POSSIBILITY OF SUCH DAMAGE.
  *
  * *****************************************************************************
  *
@@ -20,12 +33,21 @@
  *
  */
 
+#include <assert.h>
 #include <stdlib.h>
 #include <string.h>
 
+#if BC_ENABLE_NLS
 #include <locale.h>
-#include <libgen.h>
+#endif // BC_ENABLE_NLS
 
+#ifndef _WIN32
+#include <libgen.h>
+#endif // _WIN32
+
+#include <setjmp.h>
+
+#include <version.h>
 #include <status.h>
 #include <vm.h>
 #include <bc.h>
@@ -37,30 +59,79 @@
 BcGlobals bcg;
 
 #ifdef TARGET_OS_IPHONE
-int bcdc_main(int argc, char *argv[]) {
+int bcdc_main(int argc, char *argv[])
 #else
-    int main(int argc, char *argv[]) {
+int
+main(int argc, const char* argv[])
 #endif
-
+{
 	BcStatus s;
-	char *name;
+	char* name;
+	size_t len = strlen(BC_EXECPREFIX);
 
-	setlocale(LC_ALL, "");
-	memset(&bcg, 0, sizeof(BcGlobals));
+#if BC_ENABLE_NLS
+	// Must set the locale properly in order to have the right error messages.
+	vm->locale = setlocale(LC_ALL, "");
+#endif // BC_ENABLE_NLS
 
-	name = bc_vm_strdup(argv[0]);
-	bcg.name = basename(name);
+	// Set the start pledge().
+	bc_pledge(bc_pledge_start, NULL);
 
-#if !defined(DC_ENABLED)
-	s = bc_main(argc, argv);
-#elif !defined(BC_ENABLED)
-	s = dc_main(argc, argv);
+	// Sometimes, argv[0] can be NULL. Better make sure to be robust against it.
+	if (argv[0] != NULL)
+	{
+		// Figure out the name of the calculator we are using. We can't use
+		// basename because it's not portable, but yes, this is stripping off
+		// the directory.
+		name = strrchr(argv[0], BC_FILE_SEP);
+		vm->name = (name == NULL) ? argv[0] : name + 1;
+	}
+	else
+	{
+#if !DC_ENABLED
+		vm->name = "bc";
+#elif !BC_ENABLED
+		vm->name = "dc";
 #else
-	if (!strncmp(bcg.name, dc_name, strlen(dc_name))) s = dc_main(argc, argv);
-	else s = bc_main(argc, argv);
+		// Just default to bc in that case.
+		vm->name = "bc";
 #endif
+	}
 
-	free(name);
+	// If the name is longer than the length of the prefix, skip the prefix.
+	if (strlen(vm->name) > len) vm->name += len;
+
+	BC_SIG_LOCK;
+
+	// We *must* do this here. Otherwise, other code could not jump out all of
+	// the way.
+	bc_vec_init(&vm->jmp_bufs, sizeof(sigjmp_buf), BC_DTOR_NONE);
+
+	BC_SETJMP_LOCKED(vm, exit);
+
+#if BC_CLANG
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wcast-qual"
+#endif // BC_CLANG
+#if !DC_ENABLED
+	s = bc_main(argc, (const char**) argv);
+#elif !BC_ENABLED
+	s = dc_main(argc, (const char**) argv);
+#else
+	// BC_IS_BC uses vm->name, which was set above. So we're good.
+	if (BC_IS_BC) s = bc_main(argc, (const char**) argv);
+	else s = dc_main(argc, (const char**) argv);
+#endif
+#if BC_CLANG
+#pragma clang diagnostic pop
+#endif // BC_CLANG
+
+	vm->status = (sig_atomic_t) s;
+
+exit:
+	BC_SIG_MAYLOCK;
+
+	s = bc_vm_atexit((BcStatus) vm->status);
 
 	return (int) s;
 }

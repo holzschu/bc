@@ -1,4 +1,7 @@
 decimal
+length
+stack_len
+exec_stack_len
 add
 subtract
 multiply
@@ -9,6 +12,17 @@ power
 sqrt
 modexp
 boolean
+negate
+trunc
+places
+shift
+abs
+scientific
+engineering
 vars
 misc
+misc1
 strings
+rand
+is_number
+is_string

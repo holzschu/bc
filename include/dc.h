@@ -1,54 +1,109 @@
-﻿/*
+/*
  * *****************************************************************************
  *
- * Copyright 2018 Gavin D. Howard
+ * SPDX-License-Identifier: BSD-2-Clause
  *
- * Permission to use, copy, modify, and/or distribute this software for any
- * purpose with or without fee is hereby granted.
+ * Copyright (c) 2018-2024 Gavin D. Howard and contributors.
  *
- * THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
- * REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY
- * AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
- * INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
- * LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
- * OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
- * PERFORMANCE OF THIS SOFTWARE.
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are met:
+ *
+ * * Redistributions of source code must retain the above copyright notice, this
+ *   list of conditions and the following disclaimer.
+ *
+ * * Redistributions in binary form must reproduce the above copyright notice,
+ *   this list of conditions and the following disclaimer in the documentation
+ *   and/or other materials provided with the distribution.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+ * POSSIBILITY OF SUCH DAMAGE.
  *
  * *****************************************************************************
  *
- * Definitions for bc.
+ * Definitions for dc only.
  *
  */
 
 #ifndef BC_DC_H
 #define BC_DC_H
 
+#if DC_ENABLED
+
 #include <status.h>
 #include <lex.h>
 #include <parse.h>
 
-#ifdef DC_ENABLED
+/**
+ * The main function for dc. It just sets variables and passes its arguments
+ * through to @a bc_vm_boot().
+ * @return  A status.
+ */
+BcStatus
+dc_main(int argc, const char* argv[]);
 
-#define DC_PARSE_BUF_LEN ((int) (sizeof(uint32_t) * CHAR_BIT))
-
-// ** Exclude start. **
-BcStatus dc_main(int argc, char *argv[]);
-
-// ** Busybox exclude start. **
+// A reference to the dc help text.
 extern const char dc_help[];
-// ** Busybox exclude end. **
-// ** Exclude end. **
 
-BcStatus dc_lex_token(BcLex *l);
+/**
+ * The @a BcLexNext function for dc. (See include/lex.h for a definition of
+ * @a BcLexNext.)
+ * @param l  The lexer.
+ */
+void
+dc_lex_token(BcLex* l);
 
-extern const BcLexType dc_lex_regs[];
+/**
+ * Returns true if the negative char `_` should be treated as a command or not.
+ * dc considers negative a command if it does *not* immediately proceed a
+ * number. Otherwise, it's just considered a negative.
+ * @param l  The lexer.
+ * @return   True if a negative should be treated as a command, false if it
+ *           should be treated as a negative sign on a number.
+ */
+bool
+dc_lex_negCommand(BcLex* l);
+
+// References to the signal message and its length.
+extern const char dc_sig_msg[];
+extern const uchar dc_sig_msg_len;
+
+// References to an array and its length. This array is an array of lex tokens
+// that, when encountered, should be treated as commands that take a register.
+extern const uint8_t dc_lex_regs[];
 extern const size_t dc_lex_regs_len;
 
-extern const BcLexType dc_lex_tokens[];
-extern const BcInst dc_parse_insts[];
+// References to an array of tokens and its length. This array corresponds to
+// the ASCII table, starting at double quotes. This makes it easy to look up
+// tokens for characters.
+extern const uint8_t dc_lex_tokens[];
+extern const uint8_t dc_parse_insts[];
 
-void dc_parse_init(BcParse *p, struct BcProgram *prog, size_t func);
-BcStatus dc_parse_expr(BcParse *p, uint8_t flags);
+/**
+ * The @a BcParseParse function for dc. (See include/parse.h for a definition of
+ * @a BcParseParse.)
+ * @param p  The parser.
+ */
+void
+dc_parse_parse(BcParse* p);
+
+/**
+ * The @a BcParseExpr function for dc. (See include/parse.h for a definition of
+ * @a BcParseExpr.)
+ * @param p      The parser.
+ * @param flags  Flags that define the requirements that the parsed code must
+ *               meet or an error will result. See @a BcParseExpr for more info.
+ */
+void
+dc_parse_expr(BcParse* p, uint8_t flags);
 
 #endif // DC_ENABLED
 
