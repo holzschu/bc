@@ -41,6 +41,10 @@
 
 #include <bc.h>
 #include <vm.h>
+#include <TargetConditionals.h>
+#ifdef TARGET_OS_IPHONE
+#include "ios_error.h"
+#endif
 
 /**
  * Lexes an identifier, which may be a keyword.

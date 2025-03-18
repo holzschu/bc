@@ -43,6 +43,10 @@
 #include <dc.h>
 #include <program.h>
 #include <vm.h>
+#include <TargetConditionals.h>
+#ifdef TARGET_OS_IPHONE
+#include "ios_error.h"
+#endif
 
 /**
  * Parses a register. The lexer should have already lexed the true name of the

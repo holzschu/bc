@@ -3,24 +3,29 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		223545FD2CFA2F77005DC3B5 /* file.c in Sources */ = {isa = PBXBuildFile; fileRef = 223545FC2CFA2F77005DC3B5 /* file.c */; };
+		223545FF2CFA2FA5005DC3B5 /* history.c in Sources */ = {isa = PBXBuildFile; fileRef = 223545FE2CFA2FA5005DC3B5 /* history.c */; };
+		223546012CFA31C4005DC3B5 /* opt.c in Sources */ = {isa = PBXBuildFile; fileRef = 223546002CFA31C4005DC3B5 /* opt.c */; };
+		223546032CFA31E7005DC3B5 /* rand.c in Sources */ = {isa = PBXBuildFile; fileRef = 223546022CFA31E7005DC3B5 /* rand.c */; };
+		223546052CFA33A2005DC3B5 /* parse.c in Sources */ = {isa = PBXBuildFile; fileRef = 223546042CFA33A2005DC3B5 /* parse.c */; };
+		2235460A2CFA340C005DC3B5 /* bc_lex.c in Sources */ = {isa = PBXBuildFile; fileRef = 223546072CFA340C005DC3B5 /* bc_lex.c */; };
+		2235460B2CFA340C005DC3B5 /* bc_parse.c in Sources */ = {isa = PBXBuildFile; fileRef = 223546082CFA340C005DC3B5 /* bc_parse.c */; };
+		2235460D2CFA3431005DC3B5 /* bc.c in Sources */ = {isa = PBXBuildFile; fileRef = 2235460C2CFA3431005DC3B5 /* bc.c */; };
+		223546112CFA343C005DC3B5 /* dc.c in Sources */ = {isa = PBXBuildFile; fileRef = 2235460E2CFA343C005DC3B5 /* dc.c */; };
+		223546122CFA343C005DC3B5 /* dc_parse.c in Sources */ = {isa = PBXBuildFile; fileRef = 223546102CFA343C005DC3B5 /* dc_parse.c */; };
+		223546132CFA343C005DC3B5 /* dc_lex.c in Sources */ = {isa = PBXBuildFile; fileRef = 2235460F2CFA343C005DC3B5 /* dc_lex.c */; };
+		223546152CFC5BBF005DC3B5 /* lib2.c in Sources */ = {isa = PBXBuildFile; fileRef = 223546142CFC5BBF005DC3B5 /* lib2.c */; };
 		228E141325C968740065D825 /* ios_system.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 228E141225C968740065D825 /* ios_system.xcframework */; };
 		228ED8BD218F23FD0066CC1E /* bc_ios.h in Headers */ = {isa = PBXBuildFile; fileRef = 228ED8BB218F23FD0066CC1E /* bc_ios.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		228ED8C8218F24FC0066CC1E /* bc.c in Sources */ = {isa = PBXBuildFile; fileRef = 228ED8C5218F24FC0066CC1E /* bc.c */; };
-		228ED8C9218F24FC0066CC1E /* parse.c in Sources */ = {isa = PBXBuildFile; fileRef = 228ED8C6218F24FC0066CC1E /* parse.c */; };
-		228ED8CA218F24FC0066CC1E /* lex.c in Sources */ = {isa = PBXBuildFile; fileRef = 228ED8C7218F24FC0066CC1E /* lex.c */; };
-		228ED8CF218F25140066CC1E /* parse.c in Sources */ = {isa = PBXBuildFile; fileRef = 228ED8CC218F25140066CC1E /* parse.c */; };
-		228ED8D0218F25140066CC1E /* lex.c in Sources */ = {isa = PBXBuildFile; fileRef = 228ED8CD218F25140066CC1E /* lex.c */; };
-		228ED8D1218F25140066CC1E /* dc.c in Sources */ = {isa = PBXBuildFile; fileRef = 228ED8CE218F25140066CC1E /* dc.c */; };
 		228ED8D3218F253D0066CC1E /* args.c in Sources */ = {isa = PBXBuildFile; fileRef = 228ED8D2218F253D0066CC1E /* args.c */; };
 		228ED8D5218F25420066CC1E /* data.c in Sources */ = {isa = PBXBuildFile; fileRef = 228ED8D4218F25420066CC1E /* data.c */; };
 		228ED8DA218F25490066CC1E /* lex.c in Sources */ = {isa = PBXBuildFile; fileRef = 228ED8D7218F25490066CC1E /* lex.c */; };
 		228ED8DB218F25490066CC1E /* lang.c in Sources */ = {isa = PBXBuildFile; fileRef = 228ED8D8218F25490066CC1E /* lang.c */; };
 		228ED8E0218F25560066CC1E /* num.c in Sources */ = {isa = PBXBuildFile; fileRef = 228ED8DC218F25560066CC1E /* num.c */; };
-		228ED8E1218F25560066CC1E /* parse.c in Sources */ = {isa = PBXBuildFile; fileRef = 228ED8DD218F25560066CC1E /* parse.c */; };
 		228ED8E2218F25560066CC1E /* read.c in Sources */ = {isa = PBXBuildFile; fileRef = 228ED8DE218F25560066CC1E /* read.c */; };
 		228ED8E3218F25560066CC1E /* program.c in Sources */ = {isa = PBXBuildFile; fileRef = 228ED8DF218F25560066CC1E /* program.c */; };
 		228ED8E6218F25650066CC1E /* vector.c in Sources */ = {isa = PBXBuildFile; fileRef = 228ED8E4218F25650066CC1E /* vector.c */; };
@@ -32,22 +37,27 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		228E141225C968740065D825 /* ios_system.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = ios_system.xcframework; path = ../xcfs/.build/artifacts/xcfs/ios_system.xcframework; sourceTree = "<group>"; };
+		223545FC2CFA2F77005DC3B5 /* file.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = file.c; path = ../src/file.c; sourceTree = SOURCE_ROOT; };
+		223545FE2CFA2FA5005DC3B5 /* history.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = history.c; path = ../src/history.c; sourceTree = SOURCE_ROOT; };
+		223546002CFA31C4005DC3B5 /* opt.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = opt.c; path = ../src/opt.c; sourceTree = SOURCE_ROOT; };
+		223546022CFA31E7005DC3B5 /* rand.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = rand.c; path = ../src/rand.c; sourceTree = SOURCE_ROOT; };
+		223546042CFA33A2005DC3B5 /* parse.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = parse.c; path = ../src/parse.c; sourceTree = SOURCE_ROOT; };
+		223546072CFA340C005DC3B5 /* bc_lex.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = bc_lex.c; path = ../src/bc_lex.c; sourceTree = SOURCE_ROOT; };
+		223546082CFA340C005DC3B5 /* bc_parse.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = bc_parse.c; path = ../src/bc_parse.c; sourceTree = SOURCE_ROOT; };
+		2235460C2CFA3431005DC3B5 /* bc.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = bc.c; path = ../src/bc.c; sourceTree = SOURCE_ROOT; };
+		2235460E2CFA343C005DC3B5 /* dc.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = dc.c; path = ../src/dc.c; sourceTree = SOURCE_ROOT; };
+		2235460F2CFA343C005DC3B5 /* dc_lex.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = dc_lex.c; path = ../src/dc_lex.c; sourceTree = SOURCE_ROOT; };
+		223546102CFA343C005DC3B5 /* dc_parse.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = dc_parse.c; path = ../src/dc_parse.c; sourceTree = SOURCE_ROOT; };
+		223546142CFC5BBF005DC3B5 /* lib2.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = lib2.c; path = ../gen/lib2.c; sourceTree = SOURCE_ROOT; };
+		228E141225C968740065D825 /* ios_system.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = ios_system.xcframework; path = ../xcfs/.build/artifacts/xcfs/ios_system/ios_system.xcframework; sourceTree = "<group>"; };
 		228ED8B8218F23FD0066CC1E /* bc_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = bc_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		228ED8BB218F23FD0066CC1E /* bc_ios.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = bc_ios.h; sourceTree = "<group>"; };
 		228ED8BC218F23FD0066CC1E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		228ED8C5218F24FC0066CC1E /* bc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = bc.c; path = ../src/bc/bc.c; sourceTree = "<group>"; };
-		228ED8C6218F24FC0066CC1E /* parse.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = parse.c; path = ../src/bc/parse.c; sourceTree = "<group>"; };
-		228ED8C7218F24FC0066CC1E /* lex.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = lex.c; path = ../src/bc/lex.c; sourceTree = "<group>"; };
-		228ED8CC218F25140066CC1E /* parse.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = parse.c; path = ../src/dc/parse.c; sourceTree = "<group>"; };
-		228ED8CD218F25140066CC1E /* lex.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = lex.c; path = ../src/dc/lex.c; sourceTree = "<group>"; };
-		228ED8CE218F25140066CC1E /* dc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = dc.c; path = ../src/dc/dc.c; sourceTree = SOURCE_ROOT; };
 		228ED8D2218F253D0066CC1E /* args.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = args.c; path = ../src/args.c; sourceTree = "<group>"; };
 		228ED8D4218F25420066CC1E /* data.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = data.c; path = ../src/data.c; sourceTree = "<group>"; };
 		228ED8D7218F25490066CC1E /* lex.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = lex.c; path = ../src/lex.c; sourceTree = "<group>"; };
 		228ED8D8218F25490066CC1E /* lang.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = lang.c; path = ../src/lang.c; sourceTree = "<group>"; };
 		228ED8DC218F25560066CC1E /* num.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = num.c; path = ../src/num.c; sourceTree = "<group>"; };
-		228ED8DD218F25560066CC1E /* parse.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = parse.c; path = ../src/parse.c; sourceTree = "<group>"; };
 		228ED8DE218F25560066CC1E /* read.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = read.c; path = ../src/read.c; sourceTree = "<group>"; };
 		228ED8DF218F25560066CC1E /* program.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = program.c; path = ../src/program.c; sourceTree = "<group>"; };
 		228ED8E4218F25650066CC1E /* vector.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = vector.c; path = ../src/vector.c; sourceTree = "<group>"; };
@@ -109,11 +119,21 @@
 				228ED8D7218F25490066CC1E /* lex.c */,
 				228ED8E8218F29BA0066CC1E /* main.c */,
 				228ED8DC218F25560066CC1E /* num.c */,
-				228ED8DD218F25560066CC1E /* parse.c */,
 				228ED8DF218F25560066CC1E /* program.c */,
 				228ED8DE218F25560066CC1E /* read.c */,
 				228ED8E4218F25650066CC1E /* vector.c */,
 				228ED8E5218F25650066CC1E /* vm.c */,
+				223545FC2CFA2F77005DC3B5 /* file.c */,
+				223545FE2CFA2FA5005DC3B5 /* history.c */,
+				223546002CFA31C4005DC3B5 /* opt.c */,
+				223546022CFA31E7005DC3B5 /* rand.c */,
+				223546042CFA33A2005DC3B5 /* parse.c */,
+				223546072CFA340C005DC3B5 /* bc_lex.c */,
+				223546082CFA340C005DC3B5 /* bc_parse.c */,
+				2235460C2CFA3431005DC3B5 /* bc.c */,
+				2235460E2CFA343C005DC3B5 /* dc.c */,
+				2235460F2CFA343C005DC3B5 /* dc_lex.c */,
+				223546102CFA343C005DC3B5 /* dc_parse.c */,
 			);
 			name = src;
 			sourceTree = "<group>";
@@ -121,9 +141,6 @@
 		228ED8C4218F24EF0066CC1E /* bc */ = {
 			isa = PBXGroup;
 			children = (
-				228ED8C5218F24FC0066CC1E /* bc.c */,
-				228ED8C7218F24FC0066CC1E /* lex.c */,
-				228ED8C6218F24FC0066CC1E /* parse.c */,
 			);
 			name = bc;
 			sourceTree = "<group>";
@@ -131,9 +148,6 @@
 		228ED8CB218F25090066CC1E /* dc */ = {
 			isa = PBXGroup;
 			children = (
-				228ED8CE218F25140066CC1E /* dc.c */,
-				228ED8CD218F25140066CC1E /* lex.c */,
-				228ED8CC218F25140066CC1E /* parse.c */,
 			);
 			name = dc;
 			sourceTree = "<group>";
@@ -144,6 +158,7 @@
 				228ED8EC218F2C270066CC1E /* bc_help.c */,
 				228ED8EE218F2C2D0066CC1E /* dc_help.c */,
 				228ED8F0218F2C320066CC1E /* lib.c */,
+				223546142CFC5BBF005DC3B5 /* lib2.c */,
 			);
 			name = gen;
 			sourceTree = "<group>";
@@ -239,26 +254,31 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				223546112CFA343C005DC3B5 /* dc.c in Sources */,
+				223546122CFA343C005DC3B5 /* dc_parse.c in Sources */,
+				223546132CFA343C005DC3B5 /* dc_lex.c in Sources */,
 				228ED8E7218F25650066CC1E /* vm.c in Sources */,
-				228ED8CA218F24FC0066CC1E /* lex.c in Sources */,
 				228ED8DA218F25490066CC1E /* lex.c in Sources */,
+				2235460A2CFA340C005DC3B5 /* bc_lex.c in Sources */,
+				2235460B2CFA340C005DC3B5 /* bc_parse.c in Sources */,
 				228ED8D5218F25420066CC1E /* data.c in Sources */,
-				228ED8D0218F25140066CC1E /* lex.c in Sources */,
-				228ED8D1218F25140066CC1E /* dc.c in Sources */,
-				228ED8C8218F24FC0066CC1E /* bc.c in Sources */,
 				228ED8EF218F2C2D0066CC1E /* dc_help.c in Sources */,
 				228ED8E0218F25560066CC1E /* num.c in Sources */,
+				223545FD2CFA2F77005DC3B5 /* file.c in Sources */,
 				228ED8E9218F29BA0066CC1E /* main.c in Sources */,
+				2235460D2CFA3431005DC3B5 /* bc.c in Sources */,
 				228ED8ED218F2C270066CC1E /* bc_help.c in Sources */,
+				223546012CFA31C4005DC3B5 /* opt.c in Sources */,
+				223546152CFC5BBF005DC3B5 /* lib2.c in Sources */,
 				228ED8E3218F25560066CC1E /* program.c in Sources */,
+				223546032CFA31E7005DC3B5 /* rand.c in Sources */,
 				228ED8D3218F253D0066CC1E /* args.c in Sources */,
 				228ED8F1218F2C320066CC1E /* lib.c in Sources */,
 				228ED8E2218F25560066CC1E /* read.c in Sources */,
-				228ED8C9218F24FC0066CC1E /* parse.c in Sources */,
+				223545FF2CFA2FA5005DC3B5 /* history.c in Sources */,
 				228ED8E6218F25650066CC1E /* vector.c in Sources */,
-				228ED8CF218F25140066CC1E /* parse.c in Sources */,
+				223546052CFA33A2005DC3B5 /* parse.c in Sources */,
 				228ED8DB218F25490066CC1E /* lang.c in Sources */,
-				228ED8E1218F25560066CC1E /* parse.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -397,7 +417,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = bc_ios/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -411,9 +431,13 @@
 					"-funsigned-char",
 					"-I",
 					../include/,
+					"-DBC_ENABLE_EDITLINE=0",
+					"-DBC_ENABLE_HISTORY=0",
+					"-DBC_ENABLE_READLINE=0",
+					"-DBC_ENABLE_OSSFUZZ=0",
 					"-D_POSIX_C_SOURCE=200809L",
-					"-DVERSION=1.1",
 					"-DBC_NUM_KARATSUBA_LEN=32",
+					"-DBC_ENABLE_EXTRA_MATH=1",
 					"-DBC_ENABLE_SIGNALS=0",
 					"-DDC_ENABLED",
 					"-DBC_ENABLED",
@@ -448,7 +472,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = bc_ios/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -462,9 +486,13 @@
 					"-funsigned-char",
 					"-I",
 					../include/,
+					"-DBC_ENABLE_EDITLINE=0",
+					"-DBC_ENABLE_HISTORY=0",
+					"-DBC_ENABLE_READLINE=0",
+					"-DBC_ENABLE_OSSFUZZ=0",
 					"-D_POSIX_C_SOURCE=200809L",
-					"-DVERSION=1.1",
 					"-DBC_NUM_KARATSUBA_LEN=32",
+					"-DBC_ENABLE_EXTRA_MATH=1",
 					"-DBC_ENABLE_SIGNALS=0",
 					"-DDC_ENABLED",
 					"-DBC_ENABLED",

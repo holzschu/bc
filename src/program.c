@@ -50,6 +50,7 @@
 #include <TargetConditionals.h>
 #ifdef TARGET_OS_IPHONE
 #include "ios_error.h"
+#define SIGWINCH 28
 #undef stdin
 #define stdin thread_stdin
 #undef stdout

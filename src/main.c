@@ -56,7 +56,6 @@
 #ifdef TARGET_OS_IPHONE
 #include "ios_error.h"
 #endif
-BcGlobals bcg;
 
 #ifdef TARGET_OS_IPHONE
 int bcdc_main(int argc, char *argv[])

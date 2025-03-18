@@ -39,6 +39,10 @@
 
 #include <dc.h>
 #include <vm.h>
+#include <TargetConditionals.h>
+#ifdef TARGET_OS_IPHONE
+#include "ios_error.h"
+#endif
 
 bool
 dc_lex_negCommand(BcLex* l)

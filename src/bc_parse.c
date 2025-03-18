@@ -45,6 +45,10 @@
 #include <bc.h>
 #include <num.h>
 #include <vm.h>
+#include <TargetConditionals.h>
+#ifdef TARGET_OS_IPHONE
+#include "ios_error.h"
+#endif
 
 // Before you embark on trying to understand this code, have you read the
 // Development manual (manuals/development.md) and the comment in include/bc.h

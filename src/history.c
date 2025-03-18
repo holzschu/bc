@@ -152,6 +152,23 @@
 
 #include <history.h>
 #include <vm.h>
+#include <TargetConditionals.h>
+#ifdef TARGET_OS_IPHONE
+#include "ios_error.h"
+#define SIGWINCH 28
+#undef stdin
+#define stdin thread_stdin
+#undef stdout
+#define stdout thread_stdout
+#undef stderr
+#define stderr thread_stderr
+#undef STDIN_FILENO
+#define STDIN_FILENO fileno(thread_stdin)
+#undef STDOUT_FILENO
+#define STDOUT_FILENO fileno(thread_stdout)
+#undef STDERR_FILENO
+#define STDERR_FILENO fileno(thread_stderr)
+#endif
 
 sigjmp_buf bc_history_jmpbuf;
 volatile sig_atomic_t bc_history_inlinelib;
@@ -191,6 +208,9 @@ bc_history_init(BcHistory* h)
 	else
 	{
 		bc_vec_string(&v, strlen(home), home);
+#if TARGET_OS_IPHONE
+		bc_vec_concat(&v, "/Documents");
+#endif
 		bc_vec_concat(&v, bc_history_editrc);
 	}
 
@@ -203,7 +223,11 @@ bc_history_init(BcHistory* h)
 	// I want history and a prompt.
 	history(h->hist, &bc_history_event, H_SETSIZE, 100);
 	history(h->hist, &bc_history_event, H_SETUNIQUE, 1);
+#if TARGET_OS_IPHONE
+	el_set(h->el, EL_EDITOR, "vim");
+#else
 	el_set(h->el, EL_EDITOR, "emacs");
+#endif
 	el_set(h->el, EL_HIST, history, h->hist);
 	el_set(h->el, EL_PROMPT, bc_history_promptFunc);
 
@@ -287,6 +311,7 @@ bc_history_line(BcHistory* h, BcVec* vec, const char* prompt)
 		// If this is true, there was an error. Otherwise, it's just EOF.
 		if (len == -1)
 		{
+			fprintf(stderr, "There is no line... errno= %d\n", errno);
 			if (errno == ENOMEM) bc_err(BC_ERR_FATAL_ALLOC_ERR);
 			bc_err(BC_ERR_FATAL_IO_ERR);
 		}

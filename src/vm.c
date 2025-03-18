@@ -72,6 +72,12 @@
 #define stdout thread_stdout
 #undef stderr
 #define stderr thread_stderr
+#undef STDIN_FILENO
+#define STDIN_FILENO fileno(thread_stdin)
+#undef STDOUT_FILENO
+#define STDOUT_FILENO fileno(thread_stdout)
+#undef STDERR_FILENO
+#define STDERR_FILENO fileno(thread_stderr)
 #endif
 #include <bc.h>
 #if BC_ENABLE_LIBRARY
@@ -185,7 +191,21 @@ bc_vm_sig(int sig)
 		{
 			vm->status = BC_STATUS_ERROR_FATAL;
 		}
-
+#if TARGET_OS_IPHONE
+        else {
+            // Print the ready message and prompt again.
+            bc_file_puts(&vm->fout, bc_flush_none,
+                         bc_program_ready_msg);
+            if (BC_PROMPT)
+            {
+                bc_file_puts(&vm->fout, bc_flush_none, ">>> ");
+            }
+            bc_file_flush(&vm->fout, bc_flush_none);
+            // Clear the signal and status.
+            vm->sig = 0;
+            vm->status = (sig_atomic_t) BC_STATUS_SUCCESS;
+        }
+#endif
 		errno = err;
 	}
 	else
@@ -1861,7 +1881,17 @@ bc_vm_atexit(BcStatus status)
 #if BC_DEBUG
 	bc_vec_free(&vm->jmp_bufs);
 #endif // BC_DEBUG
-
+#if TARGET_OS_IPHONE
+    // Reset signal handlers:
+    struct sigaction sa;
+    sa.sa_handler = SIG_DFL;
+    sigemptyset(&sa.sa_mask);
+    sa.sa_flags = 0;
+    sigaction(SIGTERM, &sa, NULL);
+    sigaction(SIGQUIT, &sa, NULL);
+    sigaction(SIGINT, &sa, NULL);
+#endif
+    
 	return s;
 }
 #endif // BC_ENABLE_LIBRARY
